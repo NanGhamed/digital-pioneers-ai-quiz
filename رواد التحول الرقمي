@@ -1,425 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رواد التحول الرقمي - اختيار النسخة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #4c1d95, #7c3aed, #a855f7);
-            color: white;
-        }
-    </style>
-</head>
-
-<body class="min-h-screen flex items-center justify-center p-6">
-
-    <div class="bg-white/20 backdrop-blur-xl p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-white/30">
-
-        <h1 class="text-3xl font-extrabold mb-6">رواد التحول الرقمي</h1>
-        <p class="text-lg mb-10 opacity-80">اختبر معلوماتك في أدوات الذكاء الاصطناعي</p>
-
-        <div class="space-y-4">
-            <a href="./mobile/index.html" 
-               class="block bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-xl font-bold text-xl transition">
-               📱 نسخة الجوال
-            </a>
-
-            <a href="./full/index.html" 
-               class="block bg-purple-300 hover:bg-purple-400 text-purple-900 py-4 rounded-xl font-bold text-xl transition">
-               💻 النسخة الكاملة
-            </a>
-        </div>
-
-    </div>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نسخة الجوال - رواد التحول الرقمي</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #4c1d95, #7c3aed, #a855f7);
-            min-height: 100vh;
-            color: white;
-        }
-    </style>
-</head>
-
-<body class="p-4 flex items-center justify-center">
-
-    <div class="w-full max-w-md bg-white/20 backdrop-blur-xl p-6 rounded-3xl shadow-xl border border-white/30">
-
-        <div id="landing" class="space-y-4">
-            <h1 class="text-center text-2xl font-extrabold">📱 نسخة الجوال</h1>
-            <p class="text-center opacity-80">اختبر معلوماتك في أدوات الذكاء الاصطناعي</p>
-
-            <input id="name" type="text"
-                class="w-full p-3 rounded-xl text-right text-black"
-                placeholder="اسمك">
-
-            <button onclick="startGame()"
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold text-lg transition">
-                ابدأ التحدي 🚀
-            </button>
-
-            <a href="../index.html"
-                class="block text-center text-purple-200 underline text-sm mt-2">
-                الرجوع لصفحة الاختيار
-            </a>
-        </div>
-
-        <div id="game" class="hidden space-y-4">
-
-            <div class="text-sm text-white bg-purple-800 px-4 py-2 rounded-xl text-center">
-                سؤال <span id="num">1</span> من 10
-            </div>
-
-            <div class="bg-white/20 border border-white/30 p-4 rounded-xl text-center">
-                <h2 id="qtext" class="text-xl font-bold leading-loose"></h2>
-            </div>
-
-            <div id="opts" class="space-y-3"></div>
-        </div>
-
-        <div id="result" class="hidden text-center space-y-4">
-            <h2 class="text-3xl font-extrabold">النتيجة النهائية</h2>
-
-            <p class="text-xl">يا <span id="rname" class="font-bold"></span></p>
-
-            <div class="bg-white/20 border border-white/30 p-6 rounded-2xl">
-                <div class="text-5xl font-extrabold" id="rscore"></div>
-            </div>
-
-            <a href="../index.html"
-                class="block bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold text-lg transition">
-                الرجوع للصفحة الرئيسية
-            </a>
-        </div>
-
-    </div>
-
-    <script>
-        const qs = [
-            { q: "ما هي أشهر أداة للمحادثة بالذكاء الاصطناعي؟", a: 1, o: ["Excel", "ChatGPT", "Photoshop"] },
-            { q: "أي أداة تولد الصور من النصوص؟", a: 0, o: ["Midjourney", "Word", "Spotify"] },
-            { q: "الهدف الأساسي من التحول الرقمي؟", a: 1, o: ["شراء أجهزة", "تحسين الكفاءة", "زيادة الموظفين"] },
-            { q: "أداة تساعد المبرمجين بالذكاء الاصطناعي؟", a: 0, o: ["GitHub Copilot", "Paint", "Calculator"] },
-            { q: "ما هو التعلم الآلي؟", a: 1, o: ["تصميم", "قدرة الآلة على التعلم", "طباعة ثلاثية"] },
-            { q: "أداة تصحيح النصوص تلقائياً؟", a: 0, o: ["Grammarly", "Instagram", "WinRAR"] },
-            { q: "أداة إنشاء لوحات البيانات؟", a: 1, o: ["Notepad", "Power BI", "VLC"] },
-            { q: "تقنية مزج الواقع بعناصر رقمية؟", a: 0, o: ["الواقع المعزز", "الذكاء الاصطناعي", "البلوك تشين"] },
-            { q: "أداة لتلخيص الاجتماعات صوتيًا؟", a: 0, o: ["Otter.ai", "YouTube", "Twitter"] },
-            { q: "ماذا يعني AI؟", a: 1, o: ["All Internet", "Artificial Intelligence", "Auto Image"] }
-        ];
-
-        let i = 0;
-        let score = 0;
-        let username = "";
-
-        function startGame() {
-            username = document.getElementById("name").value.trim();
-            if (!username) return alert("الرجاء كتابة اسمك");
-
-            document.getElementById("landing").classList.add("hidden");
-            document.getElementById("game").classList.remove("hidden");
-
-            loadQ();
-        }
-
-        function loadQ() {
-            if (i >= qs.length) return endGame();
-
-            document.getElementById("num").textContent = i + 1;
-            document.getElementById("qtext").textContent = qs[i].q;
-
-            const opts = document.getElementById("opts");
-            opts.innerHTML = "";
-
-            qs[i].o.forEach((opt, index) => {
-                const btn = document.createElement("button");
-                btn.textContent = opt;
-                btn.className =
-                    "w-full bg-white text-black p-3 rounded-xl font-bold border-2 border-purple-300 transition";
-                btn.onclick = () => check(index, btn);
-                opts.appendChild(btn);
-            });
-        }
-
-        function check(choice, btn) {
-            const correct = qs[i].a;
-
-            if (choice === correct) {
-                score += 5;
-                btn.classList.add("bg-green-500", "text-white");
-            } else {
-                btn.classList.add("bg-red-500", "text-white");
-            }
-
-            i++;
-
-            setTimeout(loadQ, 700);
-        }
-
-        function endGame() {
-            document.getElementById("game").classList.add("hidden");
-            document.getElementById("result").classList.remove("hidden");
-
-            document.getElementById("rname").textContent = username;
-            document.getElementById("rscore").textContent = score + " / 50";
-        }
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النسخة الكاملة - رواد التحول الرقمي</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #4c1d95, #7c3aed, #a855f7);
-            min-height: 100vh;
-        }
-
-        .fade { animation: fadeIn .5s ease-in-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .correct { background-color: #22c55e !important; color: white !important; }
-        .wrong { background-color: #ef4444 !important; color: white !important; }
-    </style>
-</head>
-
-<body class="flex items-center justify-center p-4">
-
-    <div class="bg-white/20 backdrop-blur-xl w-full max-w-lg rounded-3xl shadow-2xl p-6 border border-white/20 fade">
-
-        <!-- Landing Screen -->
-        <div id="landing" class="space-y-4">
-            <h1 class="text-3xl font-extrabold text-white text-center">النسخة الكاملة 💻</h1>
-            <p class="text-white/90 text-center">اختبر معلوماتك في أدوات الذكاء الاصطناعي</p>
-
-            <div>
-                <label class="text-white font-bold">اسم المشارك:</label>
-                <input id="name" class="w-full p-3 rounded-xl mt-1 text-black" placeholder="اكتب اسمك">
-            </div>
-
-            <div>
-                <label class="text-white font-bold">الفريق / اللجنة:</label>
-                <input id="team" class="w-full p-3 rounded-xl mt-1 text-black" placeholder="مثال: لجنة التقنية">
-            </div>
-
-            <button onclick="startGame()" 
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold text-lg transition">
-                ابدأ التحدي 🚀
-            </button>
-
-            <a href="../index.html"
-                class="block text-center text-purple-200 underline text-sm mt-2">
-                الرجوع لصفحة الاختيار
-            </a>
-        </div>
-
-        <!-- Game Screen -->
-        <div id="game" class="hidden space-y-4">
-
-            <div class="text-white text-center bg-purple-800 p-3 rounded-xl">
-                سؤال <span id="num">1</span> من 10
-            </div>
-
-            <div class="bg-white/20 p-4 rounded-xl border border-white/30">
-                <h2 id="qtext" class="text-xl font-bold text-white leading-loose"></h2>
-            </div>
-
-            <div id="opts" class="space-y-3"></div>
-
-            <div class="text-center text-white mt-4 opacity-80">
-                نقاطك: <span id="score">0</span>
-            </div>
-        </div>
-
-        <!-- Result Screen -->
-        <div id="result" class="hidden space-y-4 text-center">
-            <h2 class="text-3xl font-extrabold text-white">النتيجة النهائية</h2>
-
-            <p class="text-white text-xl">يا <span id="rname" class="font-bold"></span> من  
-                <span id="rteam" class="font-bold"></span>
-            </p>
-
-            <div class="bg-white/20 border border-white/30 p-6 rounded-2xl">
-                <div class="text-5xl font-extrabold text-white" id="rscore"></div>
-            </div>
-
-            <button onclick="saveScore()"
-                class="w-full bg-purple-300 hover:bg-purple-400 text-purple-900 py-3 rounded-xl font-bold text-lg">
-                حفظ في لوحة الصدارة 🏆
-            </button>
-
-            <a href="#" onclick="location.reload()"
-                class="block bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold text-lg transition">
-                مشاركة جديدة
-            </a>
-        </div>
-
-        <!-- Leaderboard Screen -->
-        <div id="leaderboard" class="hidden space-y-4 text-center">
-            <h2 class="text-3xl font-extrabold text-white">🏆 لوحة الصدارة</h2>
-
-            <table class="w-full text-white text-right bg-white/10 border border-white/20 rounded-xl overflow-hidden">
-                <thead>
-                    <tr class="bg-purple-700 text-white">
-                        <th class="p-2">#</th>
-                        <th class="p-2">الاسم</th>
-                        <th class="p-2">اللجنة</th>
-                        <th class="p-2 text-center">النقاط</th>
-                    </tr>
-                </thead>
-                <tbody id="tb"></tbody>
-            </table>
-
-            <button onclick="goHome()" 
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold text-lg">
-                العودة للرئيسية
-            </button>
-        </div>
-
-    </div>
-
-    <script>
-        const qs = [
-            { q: "ما هي أشهر أداة للمحادثة بالذكاء الاصطناعي؟", a: 1, o: ["Excel", "ChatGPT", "Photoshop"] },
-            { q: "أي أداة تولد الصور من النصوص؟", a: 0, o: ["Midjourney", "Word", "Spotify"] },
-            { q: "الهدف الأساسي من التحول الرقمي؟", a: 1, o: ["شراء أجهزة", "تحسين الكفاءة", "زيادة الموظفين"] },
-            { q: "أداة تساعد المبرمجين؟", a: 0, o: ["GitHub Copilot", "Paint", "Calculator"] },
-            { q: "ما هو التعلم الآلي؟", a: 1, o: ["تصميم", "تعلم من البيانات", "طباعة ثلاثية"] },
-            { q: "أداة تصحيح النصوص؟", a: 0, o: ["Grammarly", "Instagram", "WinRAR"] },
-            { q: "أداة إنشاء لوحات البيانات؟", a: 1, o: ["Notepad", "Power BI", "VLC"] },
-            { q: "تقنية مزج الواقع بعناصر رقمية؟", a: 0, o: ["الواقع المعزز", "الذكاء الاصطناعي", "البلوك تشين"] },
-            { q: "أداة تلخيص الاجتماعات؟", a: 0, o: ["Otter.ai", "YouTube", "Twitter"] },
-            { q: "ماذا يعني AI؟", a: 1, o: ["All Internet", "Artificial Intelligence", "Auto Image"] }
-        ];
-
-        let i = 0;
-        let score = 0;
-        let username = "";
-        let team = "";
-
-        function startGame() {
-            username = document.getElementById("name").value.trim();
-            team = document.getElementById("team").value.trim();
-
-            if (!username) return alert("الرجاء كتابة اسمك");
-
-            document.getElementById("landing").classList.add("hidden");
-            document.getElementById("game").classList.remove("hidden");
-
-            loadQ();
-        }
-
-        function loadQ() {
-            if (i >= qs.length) return endGame();
-
-            document.getElementById("num").textContent = i + 1;
-            document.getElementById("qtext").textContent = qs[i].q;
-
-            const opts = document.getElementById("opts");
-            opts.innerHTML = "";
-
-            qs[i].o.forEach((opt, index) => {
-                let btn = document.createElement("button");
-                btn.textContent = opt;
-                btn.className =
-                    "w-full bg-white text-black p-3 rounded-xl font-bold border-2 border-purple-300 transition";
-                btn.onclick = () => check(index, btn);
-                opts.appendChild(btn);
-            });
-        }
-
-        function check(choice, btn) {
-            const correct = qs[i].a;
-
-            if (choice === correct) {
-                score += 5;
-                btn.classList.add("correct");
-            } else {
-                btn.classList.add("wrong");
-            }
-
-            i++;
-            setTimeout(loadQ, 800);
-        }
-
-        function endGame() {
-            document.getElementById("game").classList.add("hidden");
-            document.getElementById("result").classList.remove("hidden");
-
-            document.getElementById("rname").textContent = username;
-            document.getElementById("rteam").textContent = team || "—";
-            document.getElementById("rscore").textContent = score + " / 50";
-        }
-
-        function saveScore() {
-            let old = JSON.parse(localStorage.getItem("dp_leaderboard") || "[]");
-
-            old.push({ name: username, team: team || "—", score });
-
-            old.sort((a, b) => b.score - a.score);
-
-            localStorage.setItem("dp_leaderboard", JSON.stringify(old));
-
-            showLeaderboard();
-        }
-
-        function showLeaderboard() {
-            document.getElementById("result").classList.add("hidden");
-            document.getElementById("leaderboard").classList.remove("hidden");
-
-            const tb = document.getElementById("tb");
-            tb.innerHTML = "";
-
-            let list = JSON.parse(localStorage.getItem("dp_leaderboard") || "[]");
-
-            list.forEach((x, index) => {
-                tb.innerHTML += `
-                    <tr class="border-b border-white/10">
-                        <td class="p-2">${index + 1}</td>
-                        <td class="p-2">${x.name}</td>
-                        <td class="p-2">${x.team}</td>
-                        <td class="p-2 text-center">${x.score}</td>
-                    </tr>
-                `;
-            });
-        }
-
-        function goHome() {
-            location.href = "../index.html";
-        }
-    </script>
-
-</body>
-</html>
